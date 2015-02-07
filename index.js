@@ -79,7 +79,9 @@ function cloneRegex (regex, newFlags) {
   var mergedFlagObject = mergeFlagObjects(regex, newFlags);
   var mergedFlagString = toFlagString(mergedFlagObject);
 
-  return new RegExp(regex.source, mergedFlagString);
+  var ret = new RegExp(regex.source, mergedFlagString);
+  ret.lastIndex = regex.lastIndex;
+  return ret;
 }
 
 cloneRegex.parseFlagString = parseFlagString;
